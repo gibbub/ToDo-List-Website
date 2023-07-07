@@ -23,6 +23,11 @@ h1 {
   text-align: center;
 }
 
+.todo-item p {
+  word-wrap: break-word;
+  max-width: 60%;
+}
+
 .item {
   min-height: 70px;
   display: flex;
