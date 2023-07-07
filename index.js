@@ -57,7 +57,7 @@ function deleteItem(item) {
     if (checkedBoxes[item.value] === "checked") {
         numChecked--;
     }
-    else {
+    else if (numChecked === items.length){
         motivate();
     }
     checkedBoxes.splice(item.value, 1);
@@ -73,7 +73,11 @@ $(document).on("click", ".todo-item input", function() {
         motivate();
     }
     else {
+        if (checkedBoxes[this.value] === "checked") {
+            numChecked--;
+        }
         checkedBoxes[this.value] = "";
+
     }
 });
 
@@ -94,10 +98,11 @@ function updateList() {
 /** Motivation Texts */
 
 function motivate() {
-    let tasksLeft = items.length;
+    let tasksLeft = checkedBoxes.length - numChecked;
+    console.log(tasksLeft);
     let messages = [];
     
-    if (tasksLeft === 0 || (numChecked === checkedBoxes.length && checkedBoxes.length > 0)) {
+    if (tasksLeft === 0 || numChecked === items.length) {
         messages = [
             "Yayyy! All done!",
             "You did it! Now go take a break.",
@@ -114,12 +119,12 @@ function motivate() {
         "Got that one out of the way!",
         "Procrastination? Never heard of it.",
         ];
-    }
 
-    if ((tasksLeft > 0 && tasksLeft < 4) && numChecked === 0) {
-        messages.push("Only "+ tasksLeft +" left!");
-        messages.push("You're almost there!");
-        messages.push(tasksLeft +" left to go.");
+        if (tasksLeft > 0 && tasksLeft < 4) {
+            messages.push("Only "+ tasksLeft +" left!");
+            messages.push("You're almost there!");
+            messages.push(tasksLeft +" left to go.");
+        }
     }
 
     let len = messages.length;
