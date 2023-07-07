@@ -28,12 +28,19 @@ function addItem() {
     let newItem = $("#new-item").val();
     $("#new-item").reset;
     if (newItem.length === 0) {
-        // TODO: Placeholder flashes red
+        flashRed();
     }
     else {
         items.push(newItem);
         updateList();  
     }
+}
+
+function flashRed() {
+    $("#item-input").addClass("flash-red");
+    setTimeout(function() {
+        $("#item-input").removeClass("flash-red");
+    }, 200);
 }
 
 // Deleting
