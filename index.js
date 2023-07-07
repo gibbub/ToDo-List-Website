@@ -99,7 +99,6 @@ function updateList() {
 
 function motivate() {
     let tasksLeft = checkedBoxes.length - numChecked;
-    console.log(tasksLeft);
     let messages = [];
     
     if (tasksLeft === 0 || numChecked === items.length) {
