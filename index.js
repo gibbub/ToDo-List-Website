@@ -14,6 +14,7 @@ $("#list-title").html(today.toLocaleDateString("en-US", options) + "<br/> To Do 
 /** To Do List */
 
 const items = [];
+const checkedBoxes = [];
 
 // Adding
 
@@ -32,6 +33,7 @@ function addItem() {
     }
     else {
         items.push(newItem);
+        checkedBoxes.push("");
         updateList();  
     }
 }
@@ -51,16 +53,25 @@ $(document).on("click", ".delete-button", function () {
 
 function deleteItem(item) {
     items.splice(item.value, 1);
+    checkedBoxes.splice(item.value, 1);
     updateList();
     motivate();
 }
 
-// TODO: Generate motivational text when an item is crossed out
 // TODO: Maintain crossed out text when updating list
+
+// Checking
+
+$(document).on("click", ".todo-item :checked", function() {
+    if (this.checked) {
+        motivate();
+    }
+});
 
 // Updating
 
 function updateList() {
+    console.log(checkedBoxes);
     // clear list
     $(".todo-item ").remove();
 
