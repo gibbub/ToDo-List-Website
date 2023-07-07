@@ -59,7 +59,7 @@ function updateList() {
 
     // update list
     for (let i = 0; i < items.length; i++) {
-        $("#todo-list").append("<div class='item todo-item'><input type='checkbox'><p>"+ items[i] +"</p><form method=''><button class='delete-button' type='button' value="+ i.toString() +">✖</button></form></div>");
+        $("#todo-list").append("<div class='item todo-item'><input type='checkbox'><p>"+ items[i] +"</p><form method='post'><button class='delete-button' type='button' value="+ i.toString() +">✖</button></form></div>");
     }
 }
 
